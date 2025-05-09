@@ -14,6 +14,41 @@ import java.util.Random;
 public class Complex {
     private int counterRadix[];
 
+    private int[] tempArray;
+    private StringBuilder lowsBuilder;
+    private StringBuilder highsBuilder;
+
+    private int recursionCount;
+
+    public Complex() {
+
+        this.lowsBuilder = new StringBuilder();
+        this.highsBuilder = new StringBuilder();
+
+
+        this.recursionCount = 0;
+    }
+    public int[] getCounterRadix() {
+        return counterRadix;
+    }
+
+    public String getLowsString() {
+        return lowsBuilder.toString();
+    }
+
+
+    public String getHighsString() {
+        return highsBuilder.toString();
+    }
+
+
+    public int getRecursionCount() {
+        return recursionCount;
+    }
+    public int[] getTempArray() {
+        return tempArray;
+    }
+
     public void quickSort(int arr[], int low, int high){
         int i=low;
         int j=high;
@@ -75,14 +110,28 @@ public class Complex {
 
         counterRadix=count;
     }
-    
-    public void mergeSort(int a[], int tmp[], int low, int high){
-        if(low<high){
-            int center = (low+high)/2;
-            mergeSort(a,tmp,low,center );
-            mergeSort(a,tmp,center+1,high);
-            merge(a,tmp,low,center+1,high);
-        }//if
+
+    public void mergeSort(int[] a, int[] tmp, int low, int high) {
+        this.tempArray = tmp;
+        this.lowsBuilder.setLength(0);
+        this.highsBuilder.setLength(0);
+        this.recursionCount = 0;
+        mergeSortTrack(a, tmp, low, high);
+    }
+
+    private void mergeSortTrack(int[] a, int[] tmp, int low, int high) {
+        recursionCount++;
+        if (lowsBuilder.length() > 0) lowsBuilder.append(",");
+        lowsBuilder.append(low);
+        if (highsBuilder.length() > 0) highsBuilder.append(",");
+        highsBuilder.append(high);
+
+        if (low < high) {
+            int mid = (low + high) / 2;
+            mergeSortTrack(a, tmp, low, mid);
+            mergeSortTrack(a, tmp, mid + 1, high);
+            merge(a, tmp, low, mid + 1, high);
+        }
     }
         
     private void merge(int a[], int tmp[], int lowIndex, int highIndex, int endIndex){ 
@@ -107,7 +156,8 @@ public class Complex {
     }
 
     public void shellSort(int a[]) { 
-        int n = a.length; 
+        int n = a.length;
+
         // Start with a big gap, then reduce the gap 
         for (int gap = n/2; gap > 0; gap /= 2){
                 // Do a gapped insertion sort for this gap size.
