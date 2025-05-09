@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.shellSortController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.shellSortController">
     <top>
         <VBox spacing="10">
             <padding>
@@ -39,7 +39,7 @@
             <TableView fx:id="noSortedTableView" prefHeight="120" />
          <Pane prefHeight="207.0" prefWidth="751.0">
             <children>
-               <TextField fx:id="gapTf" layoutX="101.0" layoutY="7.0" prefHeight="25.0" prefWidth="413.0" />
+               <TextField fx:id="gapTf" editable="false" layoutX="101.0" layoutY="7.0" prefHeight="25.0" prefWidth="413.0" />
                <Label layoutX="297.0" layoutY="131.0" prefHeight="68.0" prefWidth="157.0" text="Sorted array">
                   <font>
                      <Font size="27.0" />
@@ -47,11 +47,11 @@
                </Label>
                <Label layoutX="14.0" layoutY="11.0" text="Gap (n/2) : " />
                <Label layoutX="14.0" layoutY="37.0" text="Gap subArray1 : " />
-               <TextField fx:id="gapArr1Tf" layoutX="101.0" layoutY="33.0" prefHeight="25.0" prefWidth="414.0" />
+               <TextField fx:id="gapArr1Tf" editable="false" layoutX="101.0" layoutY="33.0" prefHeight="25.0" prefWidth="414.0" />
                <Label layoutX="14.0" layoutY="67.0" text="Gap subArray2 : " />
-               <TextField fx:id="gapArr2Tf" layoutX="101.0" layoutY="63.0" prefHeight="25.0" prefWidth="411.0" />
+               <TextField fx:id="gapArr2Tf" editable="false" layoutX="101.0" layoutY="63.0" prefHeight="25.0" prefWidth="411.0" />
                <Label layoutX="14.0" layoutY="95.0" text="Gap subArray3 : " />
-               <TextField fx:id="gapArr3Tf" layoutX="101.0" layoutY="91.0" prefHeight="25.0" prefWidth="416.0" />
+               <TextField fx:id="gapArr3Tf" editable="false" layoutX="101.0" layoutY="91.0" prefHeight="25.0" prefWidth="416.0" />
             </children>
          </Pane>
          <TableView fx:id="sortedTableView" prefHeight="123.0" prefWidth="751.0" />

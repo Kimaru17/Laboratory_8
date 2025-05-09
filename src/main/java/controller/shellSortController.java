@@ -27,6 +27,14 @@ public class shellSortController{
     @FXML private TableView<ObservableList<Integer>> sortedTableView;
 
     private int[] originalArray;
+    @FXML
+    private Button startButton;
+    @FXML
+    private Button clearButton;
+    @FXML
+    private Button createButton;
+    @FXML
+    private Button randomizeButton;
 
     @FXML
     private void createButtonOnAction(ActionEvent event) {
@@ -54,6 +62,9 @@ public class shellSortController{
         Complex util = new Complex();
         util.shellSort(originalArray);
         gapTf.setText(util.getGapS());
+        gapArr1Tf.setText(util.getGap1());
+        gapArr2Tf.setText(util.getGap2());
+        gapArr3Tf.setText(util.getGap3());
 
 
         populateTable(sortedTableView, originalArray);

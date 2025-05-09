@@ -18,6 +18,9 @@ public class Complex {
     private StringBuilder lowsBuilder;
     private StringBuilder highsBuilder;
     private String gapS;
+    private String gap1;
+    private String gap2;
+    private String gap3;
 
     private int recursionCount;
 
@@ -30,6 +33,19 @@ public class Complex {
 
         this.recursionCount = 0;
     }
+
+    public String getGap1() {
+        return gap1;
+    }
+
+    public String getGap2() {
+        return gap2;
+    }
+
+    public String getGap3() {
+        return gap3;
+    }
+
     public int[] getCounterRadix() {
         return counterRadix;
     }
@@ -113,7 +129,7 @@ public class Complex {
         for (i = 0; i < n; i++) 
             a[i] = output[i];
 
-        counterRadix=count;
+        counterRadix=util.Utility.copyArray(count, n);
     }
 
     public void mergeSort(int[] a, int[] tmp, int low, int high) {
@@ -160,17 +176,32 @@ public class Complex {
             a[endIndex] = tmp[endIndex]; 
     }
 
-    public void shellSort(int a[]) { 
+    public void shellSort(int a[]) {
         int n = a.length;
-
+        int gapIndex = 0;
         // Start with a big gap, then reduce the gap 
         for (int gap = n/2; gap > 0; gap /= 2){
-            gapS += " "+gap;
+            gapS += gap + " ";
+
+            String currentGap = "";
+            for (int start = 0; start < gap; start++) {
+                for (int i = start; i < n; i += gap) {
+                    currentGap += a[i] + " ";
+                }
+            }
+            if (gapIndex == 0) {
+                gap1 = currentGap.trim();
+            } else if (gapIndex == 1) {
+                gap2 = currentGap.trim();
+            } else if (gapIndex == 2) {
+                gap3 = currentGap.trim();
+            }
+
+            gapIndex++;
                 // Do a gapped insertion sort for this gap size.
             // The first gap elements a[0..gap-1] are already 
             // in gapped order keep adding one more element 
             // until the entire array is gap sorted
-            int x=1;
             for (int i = gap; i < n; i += 1){
                 // add a[i] to the elements that have been gap
                 // sorted save a[i] in temp and make a hole at 
@@ -186,8 +217,8 @@ public class Complex {
                 // put temp (the original a[i]) in its correct 
                 // location 
                 a[j] = temp; 
-            } 
-        } 
+            }
+        }
     }
 
 }
