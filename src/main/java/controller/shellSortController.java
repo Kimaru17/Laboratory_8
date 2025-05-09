@@ -40,7 +40,6 @@ public class shellSortController{
             originalArray[i] = rnd.nextInt(high - low + 1) + low;
         }
         populateTable(noSortedTableView, originalArray);
-        // clear fields
         gapTf.clear();
         gapArr1Tf.clear(); gapArr2Tf.clear(); gapArr3Tf.clear();
         sortedTableView.getItems().clear(); sortedTableView.getColumns().clear();
@@ -50,11 +49,12 @@ public class shellSortController{
     private void startOnAction(ActionEvent event) {
         if (originalArray == null) { showAlert("Create the array first."); return; }
         int n = originalArray.length;
-        // initial gap
-        int gap = n / 2;
-        gapTf.setText(String.valueOf(gap));
+
+
         Complex util = new Complex();
         util.shellSort(originalArray);
+        gapTf.setText(util.getGapS());
+
 
         populateTable(sortedTableView, originalArray);
     }

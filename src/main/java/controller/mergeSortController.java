@@ -42,11 +42,9 @@ public class mergeSortController{
             originalArray[i] = rnd.nextInt(high - low + 1) + low;
         }
         fillTable(noSortedTableView, originalArray);
-        // clear previous merge outputs
         tempArrayTableView.getItems().clear(); tempArrayTableView.getColumns().clear();
         sortedTableView.getItems().clear(); sortedTableView.getColumns().clear();
         lowValueTf.clear(); highValueTf.clear(); recursiveCallsTf.clear();
-        // prepare Complex instance
         complex = new Complex();
     }
 
@@ -59,13 +57,9 @@ public class mergeSortController{
 
         int n = originalArray.length;
         int[] tmp = new int[n];
-        // run mergeSort with tracking
         complex.mergeSort(originalArray, tmp, 0, n - 1);
-        // display temp array
         fillTable(tempArrayTableView, complex.getTempArray());
-        // display sorted
         fillTable(sortedTableView, originalArray);
-        // display lows/highs and recursion
         lowValueTf.setText(complex.getLowsString());
         highValueTf.setText(complex.getHighsString());
         recursiveCallsTf.setText(String.valueOf(complex.getRecursionCount()));

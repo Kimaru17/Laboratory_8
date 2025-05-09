@@ -17,6 +17,7 @@ public class Complex {
     private int[] tempArray;
     private StringBuilder lowsBuilder;
     private StringBuilder highsBuilder;
+    private String gapS;
 
     private int recursionCount;
 
@@ -24,6 +25,7 @@ public class Complex {
 
         this.lowsBuilder = new StringBuilder();
         this.highsBuilder = new StringBuilder();
+        this.gapS = "";
 
 
         this.recursionCount = 0;
@@ -47,6 +49,9 @@ public class Complex {
     }
     public int[] getTempArray() {
         return tempArray;
+    }
+    public String getGapS() {
+        return gapS;
     }
 
     public void quickSort(int arr[], int low, int high){
@@ -160,6 +165,7 @@ public class Complex {
 
         // Start with a big gap, then reduce the gap 
         for (int gap = n/2; gap > 0; gap /= 2){
+            gapS += " "+gap;
                 // Do a gapped insertion sort for this gap size.
             // The first gap elements a[0..gap-1] are already 
             // in gapped order keep adding one more element 

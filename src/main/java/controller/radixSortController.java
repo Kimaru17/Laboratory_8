@@ -18,14 +18,6 @@ public class radixSortController {
     @FXML private TableView<ObservableList<Integer>> noSortedTableView;
     @FXML private TableView<ObservableList<Integer>> counterTableView;
     @FXML private TableView<ObservableList<Integer>> sortedTableView;
-    @FXML
-    private Button clearButton;
-    @FXML
-    private Button startButton;
-    @FXML
-    private Button createButton;
-    @FXML
-    private Button randomizeButton;
 
     private int original[];
     private Complex complex;
@@ -37,18 +29,15 @@ public class radixSortController {
         int n = Integer.parseInt(arrayLengthField.getText());
         int low = Integer.parseInt(lowBoundField.getText());
         int high = Integer.parseInt(highBoundField.getText());
-
-
             original = new int[n];
         Random rnd = new Random();
         for (int i = 0; i < n; i++) {
             original[i] = rnd.nextInt(high - low + 1) + low;
         }
 
-        // Display original
         fillTable(noSortedTableView, original);
 
-        // Sort and capture counter
+
 
     }
 
@@ -123,13 +112,9 @@ public class radixSortController {
             showAlert("Please create the array first.");
             return;
         }
-
         int n = original.length;
-        // Execute radix sort and capture counter
         complex.radixSort(original, n);
         int[] counter = complex.getCounterRadix();
-
-        // Display counter and sorted results
         fillTable(counterTableView, counter);
         fillTable(sortedTableView, original);
 
