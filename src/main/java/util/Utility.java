@@ -58,4 +58,13 @@ public class Utility {
         }
         return max;
     }
+    public static int[] copyArray(int[] a, int lenght){
+        int[] result = new int[lenght];
+
+        for (int i = 0; i < lenght; i++)
+            result[i] = a[i];
+
+        return result;
+
+    }//end copyArray
 }
