@@ -25,9 +25,13 @@ public class SelectionSortController
 
     private int original[];
     @FXML
-    private TextArea txtA_minChanges;
+    private TextArea txtA_totalIterations;
     @FXML
-    private TextArea txtA_minIndexChanges;
+    private TextArea txtA_MinIndexChanges;
+    @FXML
+    private TextArea txtA_MinChanges;
+    @FXML
+    private TextArea txtA_totalChanges;
 
     @FXML
     private void createButtonOnAction(ActionEvent actionEvent) {
@@ -44,10 +48,12 @@ public class SelectionSortController
         fillTable(noSortedTableView, original);
 
         //limpiamos el resto
-        txtA_minIndexChanges.clear();
-        txtA_minChanges.clear();
+        txtA_MinIndexChanges.clear();
+        txtA_MinChanges.clear();
         sortedTableView.getItems().clear();
         sortedTableView.getColumns().clear();
+        txtA_totalChanges.clear();
+        txtA_totalIterations.clear();
 
     }
 
@@ -124,8 +130,10 @@ public class SelectionSortController
         }
         Elementary.selectionSort(original);
         fillTable(sortedTableView, original);
-        txtA_minChanges.setText(Elementary.getMinChanges());
-        txtA_minIndexChanges.setText(Elementary.getMinIndexChanges());
+        txtA_MinChanges.setText(Elementary.getMinChanges());
+        txtA_MinIndexChanges.setText(Elementary.getMinIndexChanges());
+        txtA_totalIterations.setText(String.valueOf(Elementary.getTotalIteractions()));
+        txtA_totalChanges.setText(String.valueOf(Elementary.getTotalChanges()));
 
     }
 
@@ -138,8 +146,10 @@ public class SelectionSortController
         sortedTableView.getItems().clear();
         noSortedTableView.getColumns().clear();
         sortedTableView.getColumns().clear();
-        txtA_minIndexChanges.clear();
-        txtA_minChanges.clear();
+        txtA_MinIndexChanges.clear();
+        txtA_MinChanges.clear();
+        txtA_totalChanges.clear();
+        txtA_totalIterations.clear();
         original = null;
     }
 

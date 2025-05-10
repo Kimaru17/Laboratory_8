@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectionSortController">
+<BorderPane prefHeight="572.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectionSortController">
     <top>
         <VBox spacing="10">
             <padding>
@@ -36,18 +36,42 @@
             </padding>
             <Label text="No sorted array" />
             <TableView fx:id="noSortedTableView" prefHeight="120" />
-            <HBox prefHeight="11.0" prefWidth="686.0">
-                <children>
-                    <Label text="Min changes:      " />
-                    <TextArea fx:id="txtA_minChanges" editable="false" prefHeight="76.0" prefWidth="102.0" />
-                </children>
-            </HBox>
-            <HBox prefHeight="9.0" prefWidth="686.0">
-                <children>
-                    <Label text="Min index changes:      " />
-                    <TextArea fx:id="txtA_minIndexChanges" editable="false" prefHeight="76.0" prefWidth="102.0" />
-                </children>
-            </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <VBox prefHeight="100.0" prefWidth="276.0">
+                  <children>
+                     <HBox prefHeight="11.0" prefWidth="686.0">
+                        <children>
+                           <Label text="Min changes:      " />
+                           <TextArea fx:id="txtA_MinChanges" editable="false" prefHeight="76.0" prefWidth="102.0" />
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="11.0" prefWidth="686.0">
+                        <children>
+                           <Label text="Min index changes      " />
+                           <TextArea fx:id="txtA_MinIndexChanges" editable="false" prefHeight="76.0" prefWidth="102.0" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+               <VBox prefHeight="100.0" prefWidth="276.0">
+                  <children>
+                        <HBox prefHeight="11.0" prefWidth="686.0">
+                            <children>
+                                <Label text="Total iterations:      " />
+                                <TextArea fx:id="txtA_totalIterations" editable="false" prefHeight="76.0" prefWidth="102.0" />
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="9.0" prefWidth="686.0">
+                            <children>
+                                <Label text="Total changes:       " />
+                                <TextArea fx:id="txtA_totalChanges" editable="false" prefHeight="76.0" prefWidth="102.0" />
+                            </children>
+                        </HBox>
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
             <Label text="Sorted array" />
             <TableView fx:id="sortedTableView" prefHeight="120" />
         </VBox>
