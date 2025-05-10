@@ -5,14 +5,13 @@
  */
 package domain;
 
-import java.util.Random;
-
 /**
  *
  * @author Profesor Gilberth Chaves A <gchavesav@ucr.ac.cr>
  */
 public class Complex {
     private int counterRadix[];
+    private int pivot;
 
     private int[] tempArray;
     private StringBuilder lowsBuilder;
@@ -37,29 +36,21 @@ public class Complex {
     public String getGap1() {
         return gap1;
     }
-
     public String getGap2() {
         return gap2;
     }
-
     public String getGap3() {
         return gap3;
     }
-
     public int[] getCounterRadix() {
         return counterRadix;
     }
-
     public String getLowsString() {
         return lowsBuilder.toString();
     }
-
-
     public String getHighsString() {
         return highsBuilder.toString();
     }
-
-
     public int getRecursionCount() {
         return recursionCount;
     }
@@ -69,24 +60,50 @@ public class Complex {
     public String getGapS() {
         return gapS;
     }
+    public int getPivot(){
+        return pivot;
+    }
 
     public void quickSort(int arr[], int low, int high){
-        int i=low;
-        int j=high;
-        int pivot=arr[(low+high)/2];
-        do{
-            while(arr[i]<pivot) i++;
-            while(arr[j]>pivot) j--;
-            if(i<=j){
-                int aux=arr[i];
-                arr[i]=arr[j];
-                arr[j]=aux;
-                i++;j--;
-            }//if
-        }while(i<=j);//do
+        int i = low;
+        int j = high;
+        this.pivot = arr[(low + high) / 2]; // ahora sí modificas el atributo
 
-        if(low<j) quickSort(arr,low,j);
-        if(i<high) quickSort(arr,i,high);
+        do {
+            while (arr[i] < pivot) {
+                i++;
+            }
+            while (arr[j] > pivot) {
+                j--;
+            }
+            if (i <= j) {
+                int aux = arr[i];
+                arr[i] = arr[j];
+                arr[j] = aux;
+                i++;
+                j--;
+            }
+        } while (i <= j);
+
+        // Guardar los low, high y pivotes para análisis
+        if (lowsBuilder.length() > 0) lowsBuilder.append(",");
+        lowsBuilder.append(low);
+
+        if (highsBuilder.length() > 0) highsBuilder.append(",");
+        highsBuilder.append(high);
+
+        if (gapS.length() > 0) gapS += " ";
+        gapS += pivot; // Aquí sigue bien, ya que ahora el atributo sí tiene valor
+
+        // Contar recursiones antes de llamarse a sí mismo
+        if (low < j) {
+            recursionCount++;
+            quickSort(arr, low, j);
+        }
+        if (i < high) {
+            recursionCount++;
+            quickSort(arr, i, high);
+        }
     }
 
     public void radixSort(int a[], int n){ 
@@ -102,34 +119,34 @@ public class Complex {
 
     // A function to do counting sort of a[] according to
     // the digit represented by exp. 
-    private void countSort(int a[], int n, int exp){ 
-        int output[] = new int[n]; // output array 
-        int i; 
+    private void countSort(int a[], int n, int exp){
+        int output[] = new int[n]; // output array
+        int i;
         int count[] = new int[10];
 
-        // Store count of occurrences in count[] 
+        // Store count of occurrences in count[]
         for (i = 0; i < n; i++) {
             count[(a[i] / exp) % 10]++;
         }
-  
-        // Change count[i] so that count[i] now contains 
-        // actual position of this digit in output[] 
+
+        // Change count[i] so that count[i] now contains
+        // actual position of this digit in output[]
         for (i = 1; i < 10; i++) {
             count[i] += count[i - 1];
         }
-  
-        // Build the output array 
+
+        // Build the output array
         for (i = n - 1; i >= 0; i--) {
-            output[count[ (a[i]/exp)%10 ] - 1] = a[i]; 
+            output[count[ (a[i]/exp)%10 ] - 1] = a[i];
             count[ (a[i]/exp)%10 ]--;
         }
-  
-        // Copy the output array to a[], so that a[] now 
-        // contains sorted numbers according to curent digit 
-        for (i = 0; i < n; i++) 
+
+        // Copy the output array to a[], so that a[] now
+        // contains sorted numbers according to curent digit
+        for (i = 0; i < n; i++)
             a[i] = output[i];
 
-        counterRadix=util.Utility.copyArray(count, n);
+        counterRadix=util.Utility.copyArray(count, count.length);
     }
 
     public void mergeSort(int[] a, int[] tmp, int low, int high) {

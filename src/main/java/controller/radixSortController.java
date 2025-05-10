@@ -36,9 +36,6 @@ public class radixSortController {
         }
 
         fillTable(noSortedTableView, original);
-
-
-
     }
 
     private void fillTable(TableView<ObservableList<Integer>> tableView, int[] array) {

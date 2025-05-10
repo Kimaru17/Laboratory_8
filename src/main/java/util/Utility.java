@@ -1,5 +1,8 @@
 package util;
 
+import domain.Complex;
+import domain.Elementary;
+
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -58,13 +61,48 @@ public class Utility {
         }
         return max;
     }
-    public static int[] copyArray(int[] a, int lenght){
-        int[] result = new int[lenght];
 
-        for (int i = 0; i < lenght; i++)
+    public static void sortElementaryArrays(String algorithm, int[] array) {
+
+        Complex complex = new Complex();
+
+        switch (algorithm) {
+            case "bubbleSort":
+                Elementary.bubbleSort(array);
+                break;
+
+            case "improvedBubbleSort":
+                Elementary.improvedBubbleSort(array);
+                break;
+
+            case "selectionSort":
+                Elementary.selectionSort(array);
+                break;
+
+            case "countingSort":
+                Elementary.countingSort(array);
+                break;
+
+            case "quickSort":
+                // complex.quickSort(array);
+        }
+    }
+
+    public static int[] getIntegerArray(int n){
+        int arrayResult[] = new int[n];
+
+        for (int i = 0; i < n; i++)
+            arrayResult[i] = getRandom(9999);
+
+        return arrayResult;
+    }
+    public static int[] copyArray(int[] a, int length) {
+        int[] result = new int[length];
+
+        // Solo copiar hasta el tamaño del arreglo original
+        for (int i = 0; i < Math.min(a.length, length); i++)
             result[i] = a[i];
 
         return result;
-
-    }//end copyArray
+    }
 }
