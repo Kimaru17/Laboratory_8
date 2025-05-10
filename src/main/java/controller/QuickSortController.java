@@ -48,7 +48,6 @@ public class QuickSortController
 
     @FXML
     public void startOnAction(ActionEvent actionEvent) {
-
         if (originalArray == null) {
             showAlert("Create the array first.");
             return;
@@ -57,9 +56,12 @@ public class QuickSortController
         int n = originalArray.length;
         int[] tmp = new int[n];
         complex.quickSort(originalArray, 0, n - 1);
+
+        // Mostrar todos los pivotes
+        txtA_pivot.setText(complex.getAllPivots());  // Ahora se muestran todos los pivotes
+
         txtA_high.setText(complex.getLowsString());
         txtA_low.setText(complex.getHighsString());
-        txtA_pivot.setText(String.valueOf(complex.getPivot()));
         txtA_recursive.setText(String.valueOf(complex.getRecursionCount()));
         fillTable(sortedTableView, originalArray);
     }
@@ -102,7 +104,7 @@ public class QuickSortController
         }
         fillTable(noSortedTableView, originalArray);
         sortedTableView.getItems().clear(); sortedTableView.getColumns().clear();
-        txtA_low.clear(); txtA_high.clear(); txtA_recursive.clear();
+        txtA_low.clear(); txtA_high.clear(); txtA_recursive.clear(); txtA_pivot.clear();
         complex = new Complex();
     }
 

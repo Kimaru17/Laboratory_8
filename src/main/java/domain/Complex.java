@@ -16,6 +16,7 @@ public class Complex {
     private int[] tempArray;
     private StringBuilder lowsBuilder;
     private StringBuilder highsBuilder;
+    private StringBuilder pivotsBuilder;
     private String gapS;
     private String gap1;
     private String gap2;
@@ -27,6 +28,7 @@ public class Complex {
 
         this.lowsBuilder = new StringBuilder();
         this.highsBuilder = new StringBuilder();
+        this.pivotsBuilder = new StringBuilder();
         this.gapS = "";
 
 
@@ -64,10 +66,18 @@ public class Complex {
         return pivot;
     }
 
-    public void quickSort(int arr[], int low, int high){
+    public String getAllPivots() {
+        return pivotsBuilder.toString();
+    }
+
+    public void quickSort(int arr[], int low, int high) {
         int i = low;
         int j = high;
-        this.pivot = arr[(low + high) / 2]; // ahora sí modificas el atributo
+        this.pivot = arr[(low + high) / 2];  // pivote
+
+        // Agregar el pivote a la cadena
+        if (pivotsBuilder.length() > 0) pivotsBuilder.append(",");
+        pivotsBuilder.append(pivot);
 
         do {
             while (arr[i] < pivot) {
@@ -93,9 +103,9 @@ public class Complex {
         highsBuilder.append(high);
 
         if (gapS.length() > 0) gapS += " ";
-        gapS += pivot; // Aquí sigue bien, ya que ahora el atributo sí tiene valor
+        gapS += pivot;
 
-        // Contar recursiones antes de llamarse a sí mismo
+        // Recursión
         if (low < j) {
             recursionCount++;
             quickSort(arr, low, j);
@@ -105,6 +115,8 @@ public class Complex {
             quickSort(arr, i, high);
         }
     }
+
+
 
     public void radixSort(int a[], int n){ 
         // Find the maximum number to know number of digits 
